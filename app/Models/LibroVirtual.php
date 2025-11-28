@@ -50,17 +50,18 @@ class LibroVirtual extends Model
     /**
      * 🔥 Devuelve la URL correcta de la portada sin duplicar rutas
      */
-    public function getUrlImagenPortadaAttribute()
-    {
-        // Si no tiene portada → imagen por defecto
-        if (!$this->imagen_portada) {
-            return asset('img/default-book.png');
-        }
-
-        // Si en BD ya viene 'libros_virtuales/archivo.jpg', limpiamos duplicados
-        $file = str_replace('libros_virtuales/', '', $this->imagen_portada);
-
-        // URL final correcta
-        return asset('storage/libros_virtuales/' . $file);
+public function getUrlImagenPortadaAttribute()
+{
+    // Si no tiene imagen → mostrar por defecto
+    if (!$this->imagen_portada) {
+        return asset('img/default-book.png');
     }
+
+    // Normalizamos por si ya trae carpeta en BD
+    $file = str_replace('libros_virtuales/', '', $this->imagen_portada);
+
+    // Ruta final correcta (Laravel Cloud sirve desde storage)
+    return asset('storage/libros_virtuales/' . $file);
+}
+
 }
