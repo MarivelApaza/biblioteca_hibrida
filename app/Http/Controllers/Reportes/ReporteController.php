@@ -18,26 +18,33 @@ class ReporteController extends Controller
 {
     public function index()
     {
-        // === TARJETAS RESUMEN (CORREGIDO) ===
+        // TARJETAS
         $prestamosHoy = PrestamoFisico::whereDate('fecha_salida', today())->count();
         $lecturasHoy  = AccesoVirtual::whereDate('fecha_generacion', today())->count();
         $usuariosActivos = User::count();
         $totalCategorias = Categoria::count();
 
-        // === GRÁFICO 1: PRÉSTAMOS POR MES (CORREGIDO) ===
-        $prestamosMes = PrestamoFisico::selectRaw('MONTH(fecha_salida) as mes, COUNT(*) as total')
+        // ===============================
+        //  PRÉSTAMOS POR MES (PostgreSQL)
+        // ===============================
+
+        $prestamosMes = PrestamoFisico::select(
+                DB::raw("TO_CHAR(fecha_salida, 'TMMonth') as mes"),
+                DB::raw("COUNT(*) as total")
+            )
             ->whereNotNull('fecha_salida')
             ->groupBy('mes')
-            ->orderBy('mes')
+            ->orderByRaw("MIN(fecha_salida)")
             ->get();
 
-        $prestamosMesLabels = $prestamosMes->pluck('mes')->map(function ($mes) {
-            return Carbon::create()->month($mes)->locale('es')->monthName;
-        });
+        $prestamosMesLabels = $prestamosMes->pluck('mes');
+        $prestamosMesData   = $prestamosMes->pluck('total');
 
-        $prestamosMesData = $prestamosMes->pluck('total');
 
-        // === GRÁFICO 2: CATEGORÍAS MÁS UTILIZADAS (CORREGIDO) ===
+        // ====================================================
+        //  CATEGORÍAS MÁS UTILIZADAS (PostgreSQL compatible)
+        // ====================================================
+
         $categorias = Categoria::select(
                 'categorias.nombre_categoria',
                 DB::raw('COUNT(prestamos_fisicos.id_prestamo) as total')
@@ -49,7 +56,7 @@ class ReporteController extends Controller
             ->get();
 
         $categoriasLabels = $categorias->pluck('nombre_categoria');
-        $categoriasData = $categorias->pluck('total');
+        $categoriasData   = $categorias->pluck('total');
 
         return view('admin.reportes.index', compact(
             'prestamosHoy',
@@ -63,21 +70,22 @@ class ReporteController extends Controller
         ));
     }
 
-
-    // =======================
-    // REPORTES INDIVIDUALES
-    // =======================
+    // =======================================================
+    //      REPORTES INDIVIDUALES — Version PostgreSQL
+    // =======================================================
 
     public function librosFisicosMasSolicitados()
     {
         $data = LibroFisico::select(
                 'libros_fisicos.titulo',
                 DB::raw('
-                    (SELECT COUNT(*) FROM reservas 
-                        WHERE reservas.id_libro_fisico = libros_fisicos.id_libro_fisico) +
-                    (SELECT COUNT(*) FROM prestamos_fisicos 
-                        WHERE prestamos_fisicos.id_libro_fisico = libros_fisicos.id_libro_fisico)
-                    AS total_solicitudes
+                    (
+                        (SELECT COUNT(*) FROM reservas 
+                            WHERE reservas.id_libro_fisico = libros_fisicos.id_libro_fisico)
+                        +
+                        (SELECT COUNT(*) FROM prestamos_fisicos 
+                            WHERE prestamos_fisicos.id_libro_fisico = libros_fisicos.id_libro_fisico)
+                    ) AS total_solicitudes
                 ')
             )
             ->orderByDesc('total_solicitudes')
