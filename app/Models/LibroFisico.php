@@ -43,11 +43,12 @@ class LibroFisico extends Model
 
     /** ⭐ AQUI EL ACCESSOR ⭐ */
     public function getUrlImagenPortadaAttribute()
-    {
-        if ($this->imagen_portada && file_exists(public_path('storage/' . $this->imagen_portada))) {
-            return asset('storage/' . $this->imagen_portada);
-        }
-
-        return asset('img/no-image.png');
+{
+    if ($this->imagen_portada) {
+        return asset('storage/' . $this->imagen_portada);
     }
+
+    return asset('img/no-image.png');
+}
+
 }
