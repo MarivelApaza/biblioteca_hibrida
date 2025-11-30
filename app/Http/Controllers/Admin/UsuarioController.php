@@ -31,35 +31,36 @@ class UsuarioController extends Controller
     /**
      * Guardar un usuario nuevo (opcional).
      */
-    public function store(Request $request)
-    {
-        $request->validate([
-            'dni' => 'required|string|unique:users,dni',
-            'nombres' => 'required|string',
-            'apellidos' => 'required|string',
-            'password' => 'required|string|min:6|confirmed',
-            'rol' => 'required|in:ALUMNO,ADMINISTRADOR',
-            'estado' => 'required|in:ACTIVO,SANCIONADO',
-        ]);
+   public function store(Request $request)
+{
+    $request->validate([
+        'dni' => 'required|string|unique:users,dni',
+        'nombres' => 'required|string',
+        'apellidos' => 'required|string',
+        'password' => 'required|string|min:6',
+        'rol' => 'required|in:ALUMNO,ADMINISTRADOR',
+        'estado' => 'required|in:ACTIVO,SANCIONADO',
+    ]);
 
-        $user = User::create([
-            'dni' => $request->dni,
-            'nombres' => $request->nombres,
-            'apellidos' => $request->apellidos,
-            'password' => Hash::make($request->password),
-            'semestre' => $request->semestre ?? null,
-            'turno' => $request->turno ?? null,
-            'direccion' => $request->direccion,
-            'telefono' => $request->telefono,
-            'rol' => $request->rol,
-            'estado' => $request->estado,
-        ]);
+    $user = User::create([
+        'dni' => $request->dni,
+        'nombres' => $request->nombres,
+        'apellidos' => $request->apellidos,
+        'password' => Hash::make($request->password),
+        'semestre' => $request->semestre,
+        'turno' => $request->turno,
+        'telefono' => $request->telefono,
+        'rol' => $request->rol,
+        'estado' => $request->estado,
+    ]);
 
-        $user->syncRoles($request->rol);
+    // ASIGNAR ROL DE SPATIE (si lo usas)
+    $user->syncRoles($request->rol);
 
-        return redirect()->route('admin.usuarios.index')
-                         ->with('success', 'Usuario creado correctamente.');
-    }
+    return redirect()->route('admin.usuarios.index')
+                     ->with('success', 'Usuario creado correctamente.');
+}
+
 
     /**
      * Mostrar un usuario específico.

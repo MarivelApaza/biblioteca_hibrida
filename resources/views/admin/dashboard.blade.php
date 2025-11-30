@@ -164,120 +164,109 @@
 
 @push('styles')
 <style>
+/* ========================================================
+   🌈 TARJETAS DE RESUMEN CON COLORES (SIN CAMBIAR HTML)
+======================================================== */
 
-    /* ============================
-       🎨 TARJETA PRINCIPAL
-    ============================ */
-    .stat-card {
-        background: linear-gradient(135deg, #d8f3ff, #ccf7ef) !important;
-        border-radius: 1.3rem !important;
-        border: 1px solid #b8e9ff !important;
-        box-shadow: 0 8px 18px rgba(0,0,0,0.08) !important;
-        transition: .3s ease !important;
-    }
+/* Contenedor principal de las tarjetas */
+.row.g-3.mb-4 > div:nth-child(1) .stat-card {
+    /* Usuarios registrados – CELESTE PASTEL */
+    background: linear-gradient(135deg, #D7EEFF, #B6E4FF) !important;
+    box-shadow: 0 12px 25px rgba(0, 140, 255, 0.22) !important;
+}
 
-    .stat-card:hover {
-        transform: translateY(-5px) !important;
-        box-shadow: 0 14px 25px rgba(0,0,0,0.16) !important;
-    }
+.row.g-3.mb-4 > div:nth-child(2) .stat-card {
+    /* Libros físicos – TURQUESA PASTEL */
+    background: linear-gradient(135deg, #C8FFF4, #A0F0E2) !important;
+    box-shadow: 0 12px 25px rgba(0, 200, 150, 0.22) !important;
+}
 
-    /* ============================
-       🎨 ICONOS PASTELES
-    ============================ */
-    .stat-card .stat-icon {
-        background: #ffffffaa !important;
-        color: #067a8f !important;
-        border-radius: 1rem !important;
-        width: 55px !important;
-        height: 55px !important;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+.row.g-3.mb-4 > div:nth-child(3) .stat-card {
+    /* Libros virtuales – AMARILLO SUAVE */
+    background: linear-gradient(135deg, #FFF4CC, #FFE9A1) !important;
+    box-shadow: 0 12px 25px rgba(255, 205, 75, 0.22) !important;
+}
 
-    /* ============================
-       🎨 VALORES
-    ============================ */
-    .stat-card .stat-value {
-        color: #034452 !important;
-        font-size: 2.2rem !important;
-        font-weight: 800 !important;
-    }
+.row.g-3.mb-4 > div:nth-child(4) .stat-card {
+    /* Reservas activas – ROSA PASTEL */
+    background: linear-gradient(135deg, #FFE1EB, #FFCCDD) !important;
+    box-shadow: 0 12px 25px rgba(255, 120, 150, 0.22) !important;
+}
 
-    /* ============================
-       🎨 ETIQUETAS
-    ============================ */
-    .stat-card .stat-label {
-        color: #066c7e !important;
-        text-transform: uppercase;
-        letter-spacing: .06em;
-        font-size: .78rem !important;
-        font-weight: 700 !important;
-    }
+/* ========================================================
+   🔮 EFECTO HOVER – SÚPER SUAVE Y BONITO
+======================================================== */
+.stat-card {
+    transition: transform .25s ease, box-shadow .25s ease;
+    border-radius: 1.8rem !important;
+}
 
-    /* ============================
-       🎨 TABLA CELESTE–TURQUESA
-    ============================ */
-    table.table thead {
-        background: #bcefff !important;
-        color: #064663 !important;
-        border-bottom: 2px solid #a6e3f0 !important;
-    }
+.stat-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 20px 35px rgba(0,0,0,0.15) !important;
+}
 
-    table.table tbody tr:hover {
-        background: #e8fcff !important;
-    }
+/* ========================================================
+   ✨ ICONOS BOYFRIEND PASTEL GLOW
+======================================================== */
+.stat-icon {
+    background: rgba(255, 255, 255, 0.6) !important;
+    backdrop-filter: blur(10px);
+    border-radius: 1.2rem !important;
+    box-shadow: 0 4px 15px rgba(255,255,255,0.6),
+                inset 0 2px 4px rgba(255,255,255,0.8);
+    transition: .3s ease;
+}
 
-    /* BADGES PASTELES */
-    .badge.text-bg-warning {
-        background: #ffe8a8 !important;
-        color: #8a6100 !important;
-    }
+.stat-card:hover .stat-icon {
+    transform: scale(1.08);
+}
 
-    .badge.text-bg-success {
-        background: #c7fce5 !important;
-        color: #0f7d4a !important;
-    }
+/* ========================================================
+   🎀 TEXTOS MÁS BONITOS
+======================================================== */
+.stat-label {
+    color: #05445E !important;
+    font-weight: 700 !important;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+}
 
-    .badge.text-bg-danger {
-        background: #ffd4d4 !important;
-        color: #b83232 !important;
-    }
+.stat-value {
+    color: #032F3E !important;
+    font-weight: 900 !important;
+    font-size: 2.3rem !important;
+}
 
-    /* ============================
-       🎨 TARJETA DE PRÉSTAMOS
-    ============================ */
-    .card {
-        border-radius: 1.3rem !important;
-        border: none !important;
-        background: #ffffffee !important;
-        box-shadow: 0 6px 15px rgba(0,0,0,0.08) !important;
-        backdrop-filter: blur(6px) !important;
-    }
+/* ===========================================
+   TABLA TURQUESA PROFESIONAL
+=========================================== */
+.table thead {
+    background: linear-gradient(135deg, var(--celeste), var(--turquesa)) !important;
+    color: var(--azul-profundo) !important;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
 
-    .card-header {
-        background: linear-gradient(135deg, #d6f7ff, #d2fff2) !important;
-        color: #04445c !important;
-        border-radius: 1.3rem 1.3rem 0 0 !important;
-    }
+.table tbody tr:hover {
+    background: #e9fcff !important;
+}
 
-    .card-header h5 {
-        font-weight: 700 !important;
-        color: #033b47 !important;
-    }
+/* Badges pastel */
+.badge.text-bg-warning {
+    background: #ffefc2 !important;
+    color: #8a6f00 !important;
+}
 
-    /* ============================
-       🎨 TÍTULOS PRINCIPALES
-    ============================ */
-    h1.h3 {
-        color: #04445c !important;
-        font-weight: 900 !important;
-    }
+.badge.text-bg-success {
+    background: #c1ffe8 !important;
+    color: #0a7d54 !important;
+}
 
-    .text-muted {
-        color: #066c7e !important;
-        opacity: .7 !important;
-    }
+.badge.text-bg-danger {
+    background: #ffd8d8 !important;
+    color: #b83232 !important;
+}
 
 </style>
 @endpush
