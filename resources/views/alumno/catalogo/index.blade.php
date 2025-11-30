@@ -134,175 +134,185 @@
 
 </div>
 @endsection
-
 @push('styles')
 <style>
 
-/* ============================
-   🎨 TITULOS
-============================ */
-h1 i, h3 i {
-    opacity: .8;
+/* ======================================================
+   🌟 TÍTULO PRINCIPAL
+====================================================== */
+h1.mb-4 {
+    font-weight: 900;
+    color: #033b47;
+    text-shadow: 0 3px 10px rgba(0, 90, 110, 0.25);
+    letter-spacing: .6px;
+    animation: fadeIn 0.6s ease;
 }
 
-h1 {
-    font-weight: 800;
-    color: #064663;
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-h3.text-info {
-    color: #1c7fb8 !important;
-}
-
-h3.text-success {
-    color: #0f7a6a !important;
-}
-
-/* ============================
-   🔎 BUSCADOR
-============================ */
+/* ======================================================
+   🔎 BUSCADOR — EFECTO GLASS
+====================================================== */
 .input-group-lg input {
     border-radius: 14px 0 0 14px !important;
     border: 2px solid #b3ecff !important;
+    background: rgba(255, 255, 255, 0.65) !important;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 4px 10px rgba(0, 140, 170, 0.12);
 }
 
 .input-group-lg .btn-primary {
-    background: linear-gradient(135deg, #7de3e0, #56c9d6);
-    border: none !important;
-    padding: 0 2rem;
+    background: linear-gradient(135deg, #6ed9e8, #4cbfd9);
+    font-weight: 700;
     border-radius: 0 14px 14px 0 !important;
-    font-weight: 600;
+    box-shadow: 0 6px 14px rgba(0,140,170,0.25);
 }
 
 .input-group-lg .btn-primary:hover {
-    background: linear-gradient(135deg, #4dccd4, #64dce9);
+    background: linear-gradient(135deg, #4bbdd4, #37a7c3);
+    transform: translateX(2px);
 }
 
+/* ======================================================
+   🏷 CATEGORÍAS — CHIPS PREMIUM
+====================================================== */
 
-/* ============================
-   🟧 CATEGORÍAS
-============================ */
 .btn-outline-primary {
-    border-color: #7de3e0 !important;
+    border-color: #8eeaf3 !important;
     color: #056674 !important;
-    border-radius: 12px !important;
-    padding: .4rem .9rem;
+    border-radius: 20px !important;
+    padding: .35rem 1rem !important;
+    transition: .25s ease;
 }
+
 .btn-outline-primary:hover,
 .btn-outline-primary.active {
-    background-color: #7de3e0 !important;
-    color: #024a53 !important;
+    background: linear-gradient(135deg, #7de3e0, #4dcfe0) !important;
+    color: #033b47 !important;
     font-weight: 700;
+    border-color: transparent !important;
+    box-shadow: 0 6px 12px rgba(0,140,170,0.18);
 }
 
 .btn-secondary.active {
-    background-color: #b3ecff !important;
-    color: #064663;
-    border: none !important;
-}
-
-
-/* ============================
-   📚 TARJETAS DE LIBROS
-============================ */
-.card {
-    border-radius: 16px !important;
-    overflow: hidden;
-    transition: .3s ease;
-    background: #ffffff;
-    border: 2px solid #d9f8ff !important;
-}
-
-.card:hover {
-    transform: translateY(-6px) scale(1.015);
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12) !important;
-    border-color: #7de3e0 !important;
-}
-
-.card-title {
+    background: linear-gradient(135deg, #b3ecff, #89d4e6) !important;
+    color: #033b47 !important;
+    border-radius: 20px !important;
     font-weight: 700;
 }
 
-/* Imagen de portada */
-.card-img-top {
-    border-bottom: 3px solid #c6f7ef;
+/* ======================================================
+   📚 TARJETAS DE LIBROS — NIVEL PREMIUM++
+====================================================== */
+.card {
+    border-radius: 18px !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    backdrop-filter: blur(6px);
+    border: 2px solid #d7f8ff !important;
+    transition: .35s ease;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
 }
 
+.card:hover {
+    transform: translateY(-7px) scale(1.02);
+    border-color: #7de3e0 !important;
+    box-shadow: 0 16px 35px rgba(0,130,150,0.20);
+}
 
-/* ============================
-   🟣 ICONOS Y BOTONES
-============================ */
+.card-img-top {
+    border-bottom: 3px solid #c6f7ef;
+    transition: .3s ease;
+}
+
+.card:hover .card-img-top {
+    filter: brightness(1.1);
+}
+
+/* Títulos */
+.card-title {
+    font-weight: 800;
+    letter-spacing: .4px;
+}
+
+/* ======================================================
+   🎛 ACCIONES & BOTONES
+====================================================== */
+
 .btn-info {
-    background: linear-gradient(135deg, #b3ecff, #7de3e0);
+    background: linear-gradient(135deg, #b3ecff, #6ed9e8);
     border: none !important;
-    font-weight: 600;
+    font-weight: 700;
+    box-shadow: 0 6px 15px rgba(0,165,190,0.25);
 }
 
 .btn-info:hover {
-    background: linear-gradient(135deg, #64d9f5, #4fc9cc);
-    color: #083b43;
+    background: linear-gradient(135deg, #57c6d9, #3cb3c5);
+    color: white !important;
+    transform: translateY(-2px);
 }
 
+/* Botón para libros físicos */
 .btn-success {
     background: linear-gradient(135deg, #a8f2df, #4ed9b2);
     border: none !important;
-    font-weight: 600;
-}
-.btn-success:hover {
-    background: linear-gradient(135deg, #5fd9b9, #34c49c);
-    color: white;
+    font-weight: 700;
+    box-shadow: 0 6px 15px rgba(60,190,160,0.25);
 }
 
+.btn-success:hover {
+    background: linear-gradient(135deg, #57d9b9, #2ebd99);
+    transform: translateY(-2px);
+}
+
+/* Corazón favorito */
 .btn-outline-danger {
     border-radius: 50% !important;
-    font-size: 1.1rem;
-    padding: .45rem .6rem !important;
+    border-width: 2px !important;
     transition: .25s ease;
 }
 
 .btn-outline-danger:hover {
-    background: #ff8aa0;
+    background: #ff88a0;
     color: white;
-    border-color: #ff8aa0;
+    border-color: #ff88a0;
+    box-shadow: 0 5px 12px rgba(255,90,110,0.3);
 }
 
-
-/* ============================
-   🟢 BADGES
-============================ */
+/* ======================================================
+   📦 BADGES (stock disponibles)
+====================================================== */
 .badge.bg-success {
     background-color: #4ed9b2 !important;
-    color: #033e32 !important;
-    padding: .45rem .7rem;
-    border-radius: 10px;
-    font-weight: 700;
+    padding: .40rem .7rem !important;
+    border-radius: 12px !important;
+    font-weight: 800 !important;
+    color: #033b32 !important;
 }
 
-
-/* ============================
-   📑 PAGINACIÓN
-============================ */
+/* ======================================================
+   📑 PAGINACIÓN CELESTE
+====================================================== */
 .pagination .page-link {
-    border-radius: 10px !important;
+    border-radius: 12px !important;
     border: 1px solid #c6f7ef !important;
-    color: #055d72 !important;
+    padding: .55rem .9rem !important;
 }
 
 .pagination .page-item.active .page-link {
     background: linear-gradient(135deg, #7de3e0, #4dcfe0);
+    color: #033b47 !important;
     border: none !important;
-    font-weight: 700;
-    color: #033843 !important;
+    font-weight: 800;
 }
 
-
-/* ============================
-   ✨ RESPONSIVE
-============================ */
+/* ======================================================
+   📱 RESPONSIVE
+====================================================== */
 @media (max-width: 768px) {
-    .card-img-top {
-        height: 220px !important;
-    }
+    .card-img-top { height: 220px !important; }
 }
 
 </style>

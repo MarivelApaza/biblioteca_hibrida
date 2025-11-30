@@ -75,94 +75,143 @@
 @push('styles')
 <style>
 
-/* ==========================================
-   🎨 TÍTULO / BOTONES
-========================================== */
+/* ============================================================
+   🎨 BOTONES PRINCIPALES (Reservar / Ya tiene reserva)
+============================================================ */
 .btn-primary {
-    background: #6dcfff !important;
-    border-color: #6dcfff !important;
-    color: #003f5a !important;
-    border-radius: .9rem !important;
-    font-weight: 600 !important;
+    background: linear-gradient(135deg, #7ddfff, #4cc7e0) !important;
+    border: none !important;
+    color: #033b47 !important;
+    font-weight: 700 !important;
+    border-radius: 12px !important;
+    padding: .8rem !important;
+    box-shadow: 0 6px 15px rgba(0,140,170,0.18);
+    transition: .25s ease;
 }
-.btn-primary:hover { background: #55c6ff !important; }
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #55c8e2, #37b7cf) !important;
+    transform: translateY(-2px);
+}
 
 .btn-warning {
-    background: #ffe6a3 !important;
-    border-color: #ffe6a3 !important;
-    color: #7a5c00 !important;
-    border-radius: .9rem !important;
-    font-weight: 600 !important;
-}
-
-.alert-danger {
-    border-radius: .8rem !important;
-    background: #ffd4d4 !important;
-    color: #8b1d1d !important;
+    background: #fff0c4 !important;
     border: none !important;
-    font-weight: 600;
+    color: #7a5c00 !important;
+    font-weight: 700 !important;
+    border-radius: 12px !important;
+    padding: .8rem !important;
+    box-shadow: 0 6px 15px rgba(190,150,0,0.18);
 }
 
-/* ==========================================
-   🎨 TARJETA PRINCIPAL
-========================================== */
+/* ============================================================
+   ❗ ALERTA SIN STOCK
+============================================================ */
+.alert-danger {
+    border-radius: 12px !important;
+    background: #ffe1e1 !important;
+    color: #9b2d2d !important;
+    font-weight: 700;
+    box-shadow: 0 6px 18px rgba(200,0,0,0.15);
+}
+
+/* ============================================================
+   📘 TARJETA PRINCIPAL — GLASS PREMIUM
+============================================================ */
 .card {
-    border-radius: 1.3rem !important;
-    background: #ffffffee !important;
-    border: 1px solid #c8ecf7 !important;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.09) !important;
+    border-radius: 20px !important;
+    background: rgba(255,255,255,0.85) !important;
+    backdrop-filter: blur(8px);
+    border: 2px solid #c8f5ff !important;
+    overflow: hidden;
+    box-shadow: 0 12px 35px rgba(0, 110, 130, 0.12) !important;
+    animation: fadeCard .5s ease;
 }
 
+@keyframes fadeCard {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   📘 CABECERA — GRADIENTE CELESTE–TURQUESA
+============================================================ */
 .card-header {
-    border-radius: 1.3rem 1.3rem 0 0 !important;
-    background: linear-gradient(135deg, #8fe8ff, #6dd5ff) !important;
-    color: #023b4b !important;
-    font-weight: 800 !important;
+    background: linear-gradient(135deg, #7de3e0, #6bcdf0, #b3ecff) !important;
+    color: #033b47 !important;
+    font-weight: 900 !important;
     letter-spacing: .5px;
+    border-radius: 20px 20px 0 0 !important;
+    padding: 1.1rem 1.4rem !important;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.20);
 }
 
-/* ==========================================
-   🎨 TÍTULOS Y TEXTO
-========================================== */
+/* ============================================================
+   ✏ TIPOGRAFÍA Y TEXTOS
+============================================================ */
 h4 {
-    font-weight: 800 !important;
-    color: #023b4b !important;
+    font-weight: 900 !important;
+    letter-spacing: .4px;
 }
 
 h5 {
-    font-weight: 700 !important;
     color: #04445c !important;
+    font-weight: 800 !important;
+    margin-top: 8px;
+}
+
+p {
+    color: #033b47 !important;
+    font-size: .97rem;
+    margin-bottom: .45rem;
 }
 
 p strong {
-    color: #023b4b !important;
+    color: #022f3b !important;
 }
 
-/* ==========================================
-   🎨 IMAGEN DEL LIBRO
-========================================== */
+/* Línea separadora suave */
+hr {
+    background: #d9f5ff;
+    height: 1px;
+    border: none;
+}
+
+/* ============================================================
+   📘 IMAGEN DEL LIBRO — SOMBRA & HOVER
+============================================================ */
 .img-fluid {
-    border-radius: 1rem !important;
-    box-shadow: 0 6px 20px rgba(0,0,0,.12) !important;
+    border-radius: 14px !important;
+    padding: 4px;
+    background: #effbff;
+    border: 2px solid #c7f3fa;
+    box-shadow: 0 10px 26px rgba(0,100,120,0.15);
+    transition: .3s ease;
 }
 
-/* ==========================================
-   🎨 BADGES
-========================================== */
+.img-fluid:hover {
+    transform: scale(1.04);
+    box-shadow: 0 14px 32px rgba(0,130,160,0.22);
+}
+
+/* ============================================================
+   🟩 BADGE DE STOCK
+============================================================ */
 .badge.bg-success {
-    background: #bfffe5 !important;
-    color: #076842 !important;
-    padding: .45em .75em;
-    font-size: .85rem;
-    border-radius: .7rem !important;
-    font-weight: 700 !important;
+    background: #9af2d7 !important;
+    color: #064f3c !important;
+    font-weight: 800 !important;
+    border-radius: 10px !important;
+    padding: .5em .8em !important;
+    font-size: .9rem;
+    box-shadow: 0 4px 10px rgba(0,120,90,0.15);
 }
 
-/* ==========================================
-   🎨 CONTENEDOR
-========================================== */
+/* ============================================================
+   📏 CONTENEDOR GENERAL
+============================================================ */
 .container {
-    max-width: 1050px;
+    max-width: 1050px !important;
 }
 
 </style>

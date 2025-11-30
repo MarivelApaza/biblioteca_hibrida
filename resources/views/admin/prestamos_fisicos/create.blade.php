@@ -125,3 +125,194 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 @endsection
+
+@push('styles')
+<style>
+    /* ==========================================================
+   🌟 TÍTULO PRINCIPAL (Azul oscuro + brillo turquesa)
+========================================================== */
+h1.mb-4 {
+    font-weight: 900 !important;
+    color: #033b47 !important;
+    font-size: 2.1rem;
+    letter-spacing: .8px;
+    text-shadow: 0 3px 6px rgba(0, 80, 110, 0.22);
+}
+
+h1.mb-4 i {
+    color: #05668d !important;
+}
+
+/* ==========================================================
+   🌟 TARJETAS GLASS PREMIUM (Celeste/Turquesa)
+========================================================== */
+.card {
+    border-radius: 1.9rem !important;
+    background: rgba(255, 255, 255, 0.55) !important;
+    backdrop-filter: blur(13px);
+    border: 2px solid rgba(255,255,255,0.65);
+    box-shadow:
+        0 12px 32px rgba(0, 120, 150, 0.12),
+        inset 0 0 18px rgba(255,255,255,0.4);
+    transition: .28s;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Cinta lateral (TURQUESA) */
+.card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 9px;
+    height: 100%;
+    border-radius: 10px 0 0 10px;
+    background: linear-gradient(180deg, #7fdce8, #A8F2E6);
+    box-shadow: 0 0 18px rgba(120,220,230,0.55);
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 
+        0 22px 42px rgba(0, 110, 140, 0.22),
+        inset 0 0 22px rgba(255,255,255,0.5);
+}
+
+/* ==========================================================
+   🌟 HEADERS CELeste / TURQUESA
+========================================================== */
+.card-header {
+    font-weight: 900 !important;
+    font-size: 1.12rem;
+    border-radius: 1.9rem 1.9rem 0 0 !important;
+    letter-spacing: .5px;
+    padding: 1.15rem 1.6rem;
+    color: #033b47 !important;
+}
+
+.card-header::after {
+    content: "";
+    position: absolute;
+    bottom: 6px;
+    left: 15px;
+    width: 60px;
+    height: 3px;
+    background: rgba(255,255,255,0.7);
+    border-radius: 3px;
+}
+
+/* CELEste pastel */
+.card-header.bg-primary {
+    background: linear-gradient(135deg, #CDEFFC, #A6DCF0, #7EC7E3) !important;
+}
+
+/* TURQUESA pastel real */
+.card-header.bg-success {
+    background: linear-gradient(135deg, #a1cec6ff, #a5cfc9ff, #a3dbd4ff) !important;
+}
+
+/* Azul petróleo */
+.card-header.bg-dark {
+    background: linear-gradient(135deg, #A4C9D9, #6FA3B5, #467687) !important;
+}
+
+/* ==========================================================
+   🌟 INPUTS Y SELECTS (CELeste / TURQUESA)
+========================================================== */
+.form-control,
+.form-select {
+    border-radius: 1rem !important;
+    border: 1px solid #9dddf0 !important;
+    background: #f3fcff !important;
+    padding: .75rem 1rem !important;
+    font-size: .97rem;
+    color: #033b47 !important;
+    transition: .2s;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #66cde5 !important;
+    box-shadow: 0 0 0 .22rem rgba(100,200,230,.28) !important;
+    background: #ffffff !important;
+}
+
+/* ==========================================================
+   🌟 SELECT GRANDE DE LIBROS
+========================================================== */
+#id_libro_fisico {
+    height: 330px;
+    border-radius: 1rem;
+}
+
+#id_libro_fisico option {
+    padding: .65rem;
+    border-bottom: 1px solid #d5f4ff;
+    color: #033b47 !important;
+}
+
+#id_libro_fisico option:hover {
+    background: #dffaff !important;
+}
+
+/* ==========================================================
+   🌟 INFO DEL LIBRO SELECCIONADO (CELESTE pastel)
+========================================================== */
+#info_libro {
+    border-radius: 1.2rem !important;
+    background: linear-gradient(135deg, #E9FAFF, #D8F7FF) !important;
+    border: 1px solid #bdeaf7 !important;
+    color: #033b47 !important;
+}
+
+#info_libro h5 {
+    font-weight: 900 !important;
+}
+
+/* ==========================================================
+   🌟 ALERTA TURQUESA (sin verde)
+========================================================== */
+.alert-success {
+    background: linear-gradient(135deg, #CDEFFC, #A8F2E6) !important;
+    border: none !important;
+    border-radius: 1rem !important;
+    color: #033b47 !important;
+    box-shadow: 0 4px 12px rgba(0,150,170,0.15);
+}
+
+/* ==========================================================
+   🌟 BOTONES CELESTE / TURQUESA
+========================================================== */
+
+/* Botón buscar alumno */
+.btn-outline-primary {
+    border-radius: 1rem;
+    border: 2px solid #7ccbed !important;
+    color: #05668d !important;
+    font-weight: 700;
+}
+
+.btn-outline-primary:hover {
+    background: linear-gradient(135deg, #CDEFFC, #A6E7F6) !important;
+    color: #033b47 !important;
+}
+
+/* Botón Registrar préstamo */
+.btn-success {
+    border-radius: 1rem !important;
+    background: linear-gradient(135deg, #A8F2E6, #7ADFD0, #63D3C5) !important;
+    border: none !important;
+    font-weight: 800 !important;
+    color: #033b47 !important;
+    box-shadow: 0 6px 18px rgba(0,180,190,0.25);
+    padding: .75rem 1.6rem !important;
+}
+
+.btn-success:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #8FE9DD, #66D6C7) !important;
+}
+
+</style>
+@endpush

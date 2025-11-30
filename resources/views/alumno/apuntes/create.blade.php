@@ -102,10 +102,12 @@
                         </a>
 
                         <div class="d-flex gap-2">
-                            <button type="reset"
+                            <button type="reset" 
+                                    form="formApunte"
                                     class="btn btn-light border rounded-pill px-4">
                                 <i class="fas fa-eraser me-1"></i> Limpiar
                             </button>
+
                             <button type="submit" form="formApunte"
                                     class="btn btn-success rounded-pill px-4 shadow-sm">
                                 <i class="fas fa-save me-1"></i> Guardar apunte
@@ -120,186 +122,219 @@
 
 </div>
 @endsection
-
 @push('styles')
 <style>
-    /* CONTENEDOR GENERAL */
-    .apunte-shell{
-        max-width: 1120px;
-        margin: 0 auto;
-        padding: 1rem 0 2rem;
-    }
 
-    .apunte-header{
-        display:flex;
-        justify-content:space-between;
-        align-items:flex-start;
-        gap:1rem;
-    }
-    .apunte-title{
-        font-size:1.5rem;
-        font-weight:700;
-        color:#111827;
-    }
-    .apunte-subtitle{
-        font-size:.9rem;
-        color:#4b5563;
-    }
-    .apunte-tag{
-        font-size:.8rem;
-        padding:.35rem .9rem;
-        border-radius:999px;
-        background:#111827;
-        color:#e5e7eb;
-        display:inline-flex;
-        align-items:center;
-        box-shadow:0 8px 18px rgba(15,23,42,.55);
-        white-space:nowrap;
-    }
+/* ===============================
+   📘 CONTENEDOR GENERAL
+================================ */
+.apunte-shell {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 1rem 0 2rem;
+}
 
-    /* LIBRO ABIERTO */
-    .apunte-book-wrapper{
-        position:relative;
-        margin-top:.5rem;
-    }
-    .apunte-book-shadow{
-        position:absolute;
-        inset:10px 20px 0 20px;
-        background:radial-gradient(circle at center,#9ca3af33,#00000000 60%);
-        filter:blur(14px);
-        z-index:0;
-        pointer-events:none;
-    }
+/* ===============================
+   📘 CABECERA
+================================ */
+.apunte-title {
+    font-weight: 900;
+    color: #063c4f;
+    text-shadow: 0 2px 6px rgba(0, 70, 90, 0.15);
+}
 
-    .apunte-book{
-        position:relative;
-        z-index:1;
-        display:grid;
-        grid-template-columns:1fr 1fr;
-        border-radius:22px;
-        background:#fefdf9;
-        box-shadow:0 22px 55px rgba(15,23,42,.25);
-        overflow:hidden;
-        border:1px solid #e5e7eb;
-    }
+.apunte-subtitle {
+    color: #52717c;
+    font-style: italic;
+}
 
-    .apunte-page{
-        position:relative;
-        padding:1.8rem 2rem 2rem;
-        background:repeating-linear-gradient(
+.apunte-tag {
+    background: linear-gradient(135deg, #066b7a, #044755);
+    border: 1px solid #7de3e0;
+    padding: .4rem 1rem;
+    border-radius: 999px;
+    font-weight: 600;
+    color: #eaffff;
+    box-shadow: 0 6px 18px rgba(3, 70, 80, .35);
+}
+
+/* ===============================
+   📘 LIBRO ABIERTO (MEJORADO)
+================================ */
+.apunte-book-wrapper {
+    position: relative;
+    margin-top: 1rem;
+}
+
+.apunte-book {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-radius: 22px;
+    background: #fcfcf9;
+    overflow: hidden;
+    border: 1px solid #d7f2f7;
+    box-shadow:
+        0 18px 40px rgba(0, 60, 70, .22),
+        0 0 12px rgba(125, 227, 224, .25) inset;
+    transform: perspective(900px) rotateX(0deg);
+    transition: .4s ease;
+}
+
+.apunte-book:hover {
+    transform: perspective(850px) rotateX(1.5deg);
+}
+
+/* Sombra exterior */
+.apunte-book-shadow {
+    position: absolute;
+    inset: 18px 30px 0 30px;
+    background: radial-gradient(circle at center, #a2bcc733 15%, transparent 70%);
+    filter: blur(16px);
+    pointer-events: none;
+}
+
+/* ===============================
+   📘 LOMO CENTRAL (3D REALISTA)
+================================ */
+.apunte-book::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 22px;
+    transform: translateX(-50%);
+    background: linear-gradient(
+        to bottom,
+        #e3eef0,
+        #d0e7ea,
+        #c0dde0,
+        #d0e7ea,
+        #e3eef0
+    );
+    box-shadow:
+        inset 0 0 8px rgba(0, 0, 0, .15),
+        0 0 8px rgba(0, 0, 0, .05);
+    border-left: 1px solid #d9f2f7;
+    border-right: 1px solid #d9f2f7;
+    z-index: 2;
+}
+
+/* ===============================
+   📘 PÁGINAS
+================================ */
+.apunte-page {
+    padding: 2.2rem 2.2rem 2rem;
+    position: relative;
+    background: repeating-linear-gradient(
             to bottom,
             #ffffff,
-            #ffffff 28px,
-            #f3f4f6 29px
+            #ffffff 26px,
+            #f2f6f8 27px
         );
-    }
-    .apunte-page-left{
-        border-right:1px solid #e5e7eb;
-        background:
-            linear-gradient(to right, #fdfcf7 0, #f9fafb 20%, #fefce9 100%),
-            repeating-linear-gradient(to bottom,#ffffff,#ffffff 28px,#f3f4f6 29px);
-    }
-    .apunte-page-right{
-        background:
-            linear-gradient(to left, #fdfcf7 0, #f9fafb 20%, #fefce9 100%),
-            repeating-linear-gradient(to bottom,#ffffff,#ffffff 28px,#f3f4f6 29px);
-    }
+    transition: .3s ease;
+}
 
-    /* LÍNEA CENTRAL (lomo) */
-    .apunte-book::before{
-        content:"";
-        position:absolute;
-        top:0;
-        bottom:0;
-        left:50%;
-        width:3px;
-        transform:translateX(-50%);
-        background:linear-gradient(to bottom,#e5e7eb,#cbd5f5,#e5e7eb);
-        box-shadow:0 0 4px rgba(0,0,0,.15);
-        z-index:2;
-    }
+/* Curvatura suave */
+.apunte-page-left {
+    background:
+        linear-gradient(to right, #fbfdfd, #eef7f9 20%, #ffffff 90%),
+        repeating-linear-gradient(to bottom, #fff, #fff 26px, #f2f6f8 27px);
+    border-right: 2px solid #e7f4f7;
+    clip-path: polygon(0 0, 100% 0, 98% 100%, 0 100%);
+}
 
-    .apunte-page-inner{
-        position:relative;
-        z-index:1;
-    }
+.apunte-page-right {
+    background:
+        linear-gradient(to left, #fbfdfd, #eef7f9 20%, #ffffff 90%),
+        repeating-linear-gradient(to bottom, #fff, #fff 26px, #f2f6f8 27px);
+    clip-path: polygon(2% 0, 100% 0, 100% 100%, 0 100%);
+}
 
-    .apunte-page-title{
-        font-size:1rem;
-        font-weight:600;
-        color:#111827;
-        margin-bottom:1rem;
-    }
+/* Hover tipo “paso de página” */
+.apunte-page-right:hover {
+    transform: translateX(4px);
+}
+.apunte-page-left:hover {
+    transform: translateX(-4px);
+}
 
-    .apunte-label{
-        font-size:.82rem;
-        font-weight:600;
-        color:#374151;
-        margin-bottom:.2rem;
-        display:block;
-    }
+/* ===============================
+   📘 TEXTOS Y CAMPOS
+================================ */
+.apunte-page-title {
+    font-weight: 800;
+    color: #033b47;
+    text-shadow: 0 1px 3px rgba(0, 40, 55, 0.12);
+}
 
-    .apunte-input{
-        border-radius:12px;
-        border:1px solid #e5e7eb;
-        background:#f9fafb;
-        font-size:.9rem;
-    }
-    .apunte-input:focus{
-        border-color:#a5b4fc;
-        box-shadow:0 0 0 .16rem rgba(129,140,248,.35);
-        background:#ffffff;
-    }
+.apunte-label {
+    font-weight: 600;
+    color: #083a45;
+}
 
-    .apunte-note-tip{
-        font-size:.8rem;
-        color:#6b7280;
-        font-style:italic;
-    }
+.apunte-input {
+    border-radius: 12px;
+    border: 1px solid #b8e7ef;
+    background: #f8feff;
+}
+.apunte-input:focus {
+    border-color: #79e2ec;
+    box-shadow: 0 0 0 .15rem rgba(97, 236, 255, .35);
+}
 
-    /* TEXTAREA CON EFECTO “CUADRICULADO” */
-    .apunte-textarea{
-        min-height:260px;
-        border-radius:14px;
-        border:1px solid #e5e7eb;
-        background:
-            linear-gradient(#e5e7eb 1px, transparent 1px),
-            linear-gradient(90deg, #e5e7eb 1px, transparent 1px),
-            #fdfdfb;
-        background-size:100% 32px, 32px 100%;
-        font-size:.95rem;
-        line-height:2;
-        padding:0.75rem 1rem;
-        resize:vertical;
-    }
-    .apunte-textarea:focus{
-        border-color:#60a5fa;
-        box-shadow:0 0 0 .18rem rgba(96,165,250,.35);
-        outline:none;
-        background-color:#ffffff;
-    }
+/* TEXTAREA efecto cuadrícula */
+.apunte-textarea {
+    border-radius: 14px;
+    border: 1px solid #c8ebef;
+    background:
+        linear-gradient(#ddeff0 1px, transparent 1px),
+        linear-gradient(90deg, #ddeff0 1px, transparent 1px),
+        #ffffff;
+    background-size: 100% 28px, 28px 100%;
+}
+.apunte-textarea:focus {
+    border-color: #7de3eb;
+    box-shadow: 0 0 0 .2rem rgba(100, 220, 235, .35);
+}
 
-    /* RESPONSIVE */
-    @media (max-width: 992px){
-        .apunte-book{
-            grid-template-columns:1fr;
-        }
-        .apunte-book::before{
-            display:none;
-        }
-        .apunte-page-left{
-            border-right:none;
-            border-bottom:1px solid #e5e7eb;
-        }
-    }
+/* ===============================
+   📘 BOTONES (PAGINADORES)
+================================ */
+.btn-outline-secondary {
+    border-radius: 999px !important;
+}
 
-    @media (max-width: 576px){
-        .apunte-shell{
-            padding-inline:.25rem;
-        }
-        .apunte-page{
-            padding:1.4rem 1.1rem 1.6rem;
-        }
+.btn-success {
+    background: linear-gradient(135deg, #a8f5e2, #56d4b9) !important;
+    border: none !important;
+    font-weight: 700 !important;
+}
+
+.btn-light {
+    border-radius: 999px !important;
+}
+
+/* ===============================
+   📘 RESPONSIVE
+================================ */
+@media (max-width: 992px){
+    .apunte-book {
+        grid-template-columns: 1fr;
     }
+    .apunte-book::before {
+        display:none;
+    }
+    .apunte-page-left {
+        border-right:none;
+        border-bottom: 1px solid #d9f2f7;
+        clip-path:none;
+    }
+    .apunte-page-right {
+        clip-path:none;
+    }
+}
+
 </style>
 @endpush

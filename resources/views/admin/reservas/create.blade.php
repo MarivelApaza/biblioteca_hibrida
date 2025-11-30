@@ -118,4 +118,176 @@
     </div>
 </div>
 @endsection
+@push('styles')
+<style>
+/* ==========================================================
+   🌈 PALETA PASTEL INTENSA
+========================================================== */
+:root {
+    --grad-azul: linear-gradient(135deg, #CDEFFC, #99DFFF, #7FCBF7);
+    --grad-turquesa: linear-gradient(135deg, #C7FFF4, #8FF7E3, #6EECD4);
+    --grad-verde: linear-gradient(135deg, #D6FFE5, #B3FFD1, #89F8BB);
+    --grad-rosado: linear-gradient(135deg, #FFE1EC, #FFBDD3, #FF9ABD);
+    --grad-amarillo: linear-gradient(135deg, #FFF4C9, #FFE7A3, #FFD97C);
+    --texto-oscuro: #033b47;
+}
 
+/* ==========================================================
+   🟦 TÍTULO PRINCIPAL CON DEGRADADO
+========================================================== */
+h1 {
+    background: linear-gradient(90deg, #05445E, #5BE6D2);
+    -webkit-background-clip: text;
+    color: transparent !important;
+    font-weight: 900 !important;
+}
+
+/* ==========================================================
+   🎀 TARJETAS PRINCIPALES CON MÁS COLOR
+========================================================== */
+.card {
+    border-radius: 2rem !important;
+    background: rgba(255, 255, 255, 0.55) !important;
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(255,255,255,0.8);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+    transition: 0.35s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+}
+
+/* Header Azul Pastel + Degradado */
+.card-header.bg-primary {
+    background: var(--grad-azul) !important;
+    color: var(--texto-oscuro) !important;
+    border-radius: 2rem 2rem 0 0 !important;
+    padding: 1.2rem 1.8rem !important;
+    font-size: 1.15rem;
+    font-weight: 800;
+}
+
+/* Header Verde Pastel + Degradado */
+.card-header.bg-success {
+    background: var(--grad-verde) !important;
+    color: var(--texto-oscuro) !important;
+    border-radius: 2rem 2rem 0 0 !important;
+    padding: 1.2rem 1.8rem !important;
+    font-size: 1.15rem;
+    font-weight: 800;
+}
+
+/* ==========================================================
+   ✨ INPUTS CON DEGRADADO SUAVE Y GLOW
+========================================================== */
+.form-control,
+.form-select {
+    border-radius: 1rem !important;
+    border: 2px solid transparent !important;
+    background: linear-gradient(white, white) padding-box,
+                linear-gradient(90deg, #8edbff, #6cf4de) border-box !important;
+    color: #033b47;
+    box-shadow: 0 5px 12px rgba(0,150,150,0.1);
+}
+
+.form-control:focus,
+.form-select:focus {
+    box-shadow: 0 0 12px rgba(0, 180, 200, 0.6) !important;
+    transform: scale(1.02);
+}
+
+/* ==========================================================
+   💎 BOTONES DEGRADADOS BRILLANTES
+========================================================== */
+.btn-outline-primary {
+    border-radius: 1rem;
+    background: linear-gradient(135deg, #D7EEFF, #B4E2FF);
+    border: none !important;
+    color: #04384a !important;
+}
+
+.btn-outline-primary:hover {
+    background: linear-gradient(135deg, #A8DBFF, #80CAFF) !important;
+}
+
+/* Botón buscar libros */
+.btn-outline-success {
+    border-radius: 1rem;
+    background: linear-gradient(135deg, #C7FFF3, #98F5DD);
+    border: none !important;
+    color: #0e5f49 !important;
+}
+
+.btn-outline-success:hover {
+    background: linear-gradient(135deg, #9BFFE5, #6AF2CE) !important;
+}
+
+/* Botón reservar */
+.btn-success {
+    border-radius: 1rem;
+    background: linear-gradient(135deg, #05445E, #185874ff, #19607eff) !important;
+    border: none !important;
+    font-weight: 700 !important;
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, #6a76acff, #8f99d3ff) !important;
+    transform: scale(1.04);
+}
+
+/* ==========================================================
+   📚 TABLA SUPER PASTEL PREMIUM
+========================================================== */
+.table {
+    border-radius: 1.5rem !important;
+    overflow: hidden;
+    margin-top: 1rem;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+/* Encabezado con degradado */
+.table thead {
+    background: var(--grad-turquesa) !important;
+    color: #033b47 !important;
+    font-weight: 800;
+    letter-spacing: .03em;
+}
+
+/* Filas */
+.table tbody tr {
+    transition: 0.2s ease;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+/* Hover brillante */
+.table tbody tr:hover {
+    background: rgba(150, 240, 255, 0.45) !important;
+}
+
+/* Celdas */
+.table td, .table th {
+    padding: 1rem !important;
+    color: #033b47 !important;
+}
+
+/* ==========================================================
+   🔔 ALERTAS PASTEL MÁS COLORIDAS
+========================================================== */
+.alert-success {
+    background: var(--grad-turquesa) !important;
+    border: none !important;
+    border-radius: 1.2rem !important;
+    color: #07493d !important;
+    box-shadow: 0 6px 18px rgba(0,255,200,0.2);
+}
+
+.alert-warning {
+    background: var(--grad-amarillo) !important;
+    border: none !important;
+    border-radius: 1.2rem !important;
+    color: #715600 !important;
+}
+
+</style>
+@endpush

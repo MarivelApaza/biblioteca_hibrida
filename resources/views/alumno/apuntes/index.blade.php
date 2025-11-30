@@ -5,7 +5,8 @@
 <div class="container">
     <h3>📖 Mis Apuntes</h3>
     <a href="{{ route('alumno.apuntes.create', ['id_libro' => 1]) }}" class="btn btn-primary mb-3">+ Nuevo Apunte</a>
-
+<br>
+<br>
     <div class="row">
         @forelse($apuntes as $apunte)
         <div class="col-md-4 mb-3">
@@ -23,6 +24,7 @@
                     </form>
                 </div>
             </div>
+                                <br>
         </div>
         @empty
         <p>No tienes apuntes aún.</p>
@@ -34,99 +36,217 @@
 @push('styles')
 <style>
 
-/* ================================
-   🎨 TÍTULO PRINCIPAL
-================================ */
-h3 {
-    font-weight: 900;
-    color: #04445c;
-    margin-bottom: 1rem;
+/* =====================================================
+   ✨ TIPOGRAFÍA LIMPIA
+===================================================== */
+body, h3, p, .card, button {
+    font-family: 'Poppins','Nunito',sans-serif !important;
 }
 
-/* ================================
-   🎨 CONTENEDOR DE TARJETAS
-================================ */
-.card {
-    border-radius: 1.1rem !important;
-    background: #ffffffee;
-    border: 1px solid #c8ecf5 !important;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.06) !important;
-    transition: transform .2s ease, box-shadow .2s ease;
+
+/* =====================================================
+   📝 TÍTULO
+===================================================== */
+h3 {
+    font-weight: 800 !important;
+    font-size: 2rem !important;
+    color: #044a5d !important;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 4px rgba(0,70,90,0.08);
 }
+
+h3::after {
+    content:"";
+    width: 70px;
+    height: 4px;
+    border-radius: 8px;
+    background: linear-gradient(90deg,#c7f3ff,#9ee6f2);
+}
+
+
+/* =====================================================
+   🌤 FONDO CELESTE SUPER SUAVE
+===================================================== */
+body {
+    background: linear-gradient(180deg,#fafdff,#f3faff,#eef8fb) !important;
+}
+
+
+/* =====================================================
+   📌 TARJETA (stick note) — ULTRA SOFT
+===================================================== */
+.card {
+    position: relative;
+    border-radius: 18px !important;
+    padding-top: 42px !important;
+    border: none !important;
+    width: 100%;
+    background: #ffffffee !important;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+    transition: .3s ease;
+    cursor: default;
+}
+
+/* rotación MUY sutil */
+.card:nth-child(odd) { transform: rotate(-0.6deg); }
+.card:nth-child(even) { transform: rotate(0.7deg); }
 
 .card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 18px 35px rgba(0,0,0,0.12) !important;
+    transform: scale(1.02) rotate(0deg);
+    box-shadow: 0 14px 30px rgba(0,0,0,0.10);
 }
 
-/* ================================
-   🎨 CABECERA DE LA TARJETA
-================================ */
+
+/* =====================================================
+   🎀 CINTA SUPER SUAVE (solo celeste muy pálido)
+===================================================== */
+.card::before {
+    content:"";
+    position: absolute;
+    top:-12px;
+    left:50%;
+    transform: translateX(-50%) rotate(-2.2deg);
+    width: 85px;
+    height: 26px;
+    background: rgba(180, 225, 240, 0.35);
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+    backdrop-filter: blur(3px);
+    border: 1px solid rgba(160,210,230,0.25);
+}
+
+
+/* =====================================================
+   📑 ESQUINA DOBLADA, PERO CELESTE MUY FINO
+===================================================== */
+.card::after {
+    content:"";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 26px;
+    height: 26px;
+    background: linear-gradient(135deg,#e8f7fb, #d6f0f5);
+    clip-path: polygon(0 0,100% 100%,100% 0);
+    box-shadow: -2px -2px 4px rgba(0,0,0,0.05);
+}
+
+
+/* =====================================================
+   🩵 CABECERA STICK NOTE (solo turquesa pastel)
+===================================================== */
 .card-header {
-    background: linear-gradient(90deg, #8de3ff, #5ac8f5) !important;
-    color: #003f5a !important;
-    font-weight: 700;
-    border-top-left-radius: 1rem !important;
-    border-top-right-radius: 1rem !important;
-}
-
-/* ================================
-   🎨 TEXTO DEL CUERPO
-================================ */
-.card-body p {
-    color: #34515e;
-    font-size: .9rem;
-}
-
-/* ================================
-   🎨 BOTONES
-================================ */
-
-/* Nuevo Apunte */
-.btn-primary {
-    background: #6dccff !important;
-    border-color: #6dccff !important;
-    color: #003f5a !important;
+    background: linear-gradient(90deg,#d6f8ff,#b8eef7) !important;
+    color:#044a5d !important;
+    border-radius: 18px 18px 0 0 !important;
     font-weight: 700 !important;
-    border-radius: .8rem !important;
+    font-size: .95rem;
+    text-align:center;
+    padding: .65rem !important;
+}
+
+
+/* =====================================================
+   ✍ TEXTO
+===================================================== */
+.card-body {
+    padding: 1rem 1.3rem !important;
+    color:#325c63;
+    font-size: .92rem;
+    line-height: 1.55rem;
+}
+
+.card-body p strong {
+    color:#044a5d !important;
+}
+
+
+/* =====================================================
+   🎛 BOTONES — CELESTE PREMIUM ELEGANTE
+===================================================== */
+
+/* --- BOTÓN: Nuevo Apunte --- */
+.btn-primary {
+    background: linear-gradient(135deg, #40a2b8ff, #8fe0ec) !important;
+    color: #034a5b !important;
+    padding: .7rem 1.5rem !important;
+    border-radius: 14px !important;
+    font-weight: 800 !important;
+    border: none !important;
+    letter-spacing: .4px;
+    box-shadow: 0 6px 14px rgba(0, 150, 170, 0.25);
+    transition: .28s ease;
 }
 .btn-primary:hover {
-    background: #55c0ff !important;
+    transform: translateY(-3px);
+    background: linear-gradient(135deg, #a6ecff, #78d3e1) !important;
+    box-shadow: 0 10px 22px rgba(0, 150, 170, 0.32);
 }
 
-/* Editar */
+
+/* --- BOTÓN: Editar --- */
 .btn-warning {
-    background: #ffe8a8 !important;
-    border-color: #ffe8a8 !important;
-    color: #8a6c00 !important;
-    border-radius: .8rem !important;
-    font-weight: 600 !important;
+    background: linear-gradient(135deg, #86daceff, #8bd3c9ff) !important;
+    color: #225b6a !important;
+    border-radius: 12px !important;
+    border: 1px solid #b8e4f0 !important;
+    font-weight: 700 !important;
+    padding: .45rem 1rem !important;
+    transition: .25s ease;
 }
 .btn-warning:hover {
-    background: #ffd97a !important;
+    background: linear-gradient(135deg, #d3f0ff, #b4e4f2) !important;
+    box-shadow: 0 4px 12px rgba(0, 130, 150, 0.18);
 }
 
-/* Eliminar */
+
+/* --- BOTÓN: Eliminar --- */
 .btn-danger {
-    background: #ffd4d4 !important;
-    border-color: #ffd4d4 !important;
-    color: #8a1d1d !important;
-    font-weight: 600 !important;
-    border-radius: .8rem !important;
+    background: linear-gradient(135deg, #cff3ff, #a8e4f2) !important;
+    color: #114452 !important;
+    border-radius: 12px !important;
+    border: 1px solid #9edced !important;
+    font-weight: 700 !important;
+    padding: .45rem 1rem !important;
+    transition: .25s ease;
 }
 .btn-danger:hover {
-    background: #ffb3b3 !important;
+    background: linear-gradient(135deg, #baeaff, #94d7e6) !important;
+    box-shadow: 0 4px 12px rgba(0, 130, 150, 0.18);
 }
 
-/* ================================
-   🎨 VACÍO
-================================ */
-.empty-text {
-    color: #4e656e;
-    font-size: 1rem;
-    margin-top: 1rem;
+
+
+/* =====================================================
+   💙 “Nuevo Apunte”
+===================================================== */
+.btn-primary {
+    background: linear-gradient(135deg,#c7f4ff,#9fe7f0) !important;
+    color:#064f63 !important;
+    padding:.65rem 1.3rem !important;
+    border-radius:14px !important;
+    font-weight:700 !important;
+    border:none !important;
+    transition:.25s ease;
+    box-shadow:0 4px 10px rgba(0,110,130,0.15);
+}
+.btn-primary:hover {
+    transform: translateY(-3px);
+    background: linear-gradient(135deg,#b1effc,#8fe0ec) !important;
 }
 
+
+/* =====================================================
+   🎨 COLORES SUAVES ROTATIVOS SOLO CELESTE
+===================================================== */
+.card:nth-child(1) { background:#f4fcff !important; }
+.card:nth-child(2) { background:#eefaff !important; }
+.card:nth-child(3) { background:#e9f7ff !important; }
+.card:nth-child(4) { background:#f2fdff !important; }
+.card:nth-child(5) { background:#e8f6fb !important; }
 
 </style>
 @endpush

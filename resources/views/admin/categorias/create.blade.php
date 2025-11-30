@@ -45,7 +45,6 @@ form {
     padding: 2rem;
     border: 1px solid #bdeaf7;
     box-shadow: 0 10px 25px rgba(0, 91, 128, 0.12);
-    max-width: 700px;
 }
 
 /* ==========================================
