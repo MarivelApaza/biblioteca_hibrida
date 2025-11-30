@@ -49,9 +49,10 @@
         <div class="col-md-3 mb-4">
             <div class="card h-100 shadow-lg border-0 position-relative">
 
-                <img src="{{ $libro->url_imagen_portada }}"
-                     class="card-img-top"
-                     style="height: 300px; object-fit: cover">
+                <img src="{{ asset($libro->url_imagen_portada) }}"
+                    class="card-img-top"
+                    style="height: 300px; object-fit: cover">
+
 
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title text-primary">{{ $libro->titulo }}</h5>
