@@ -96,7 +96,7 @@
         <div class="col-md-3 mb-4">
             <div class="card h-100 shadow-lg border-0 position-relative">
 
-                <img src="{{ $libro->url_imagen_portada }}"
+                <img src="{{ asset($libro->url_imagen_portada) }}"
                      class="card-img-top"
                      style="height: 300px; object-fit: cover">
 
