@@ -50,7 +50,7 @@
                 <h5 class="mb-3">Información del Libro</h5>
 
                 <p><strong>Autor:</strong> {{ $libro->autor }}</p>
-                <p><strong>Categoría:</strong> {{ $libro->categoria->nombre }}</p>
+                <p><strong>Categoría:</strong> {{ $libro->categoria->nombre_categoria ?? 'Sin categoría' }}</p>
                 <p><strong>ISBN:</strong> {{ $libro->isbn ?? 'No registrado' }}</p>
                 <p><strong>Editorial:</strong> {{ $libro->editorial ?? 'No registrado' }}</p>
                 <p><strong>Año edición:</strong> {{ $libro->año_edicion ?? 'Sin año' }}</p>

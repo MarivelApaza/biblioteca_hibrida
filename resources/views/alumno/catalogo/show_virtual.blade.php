@@ -32,10 +32,8 @@
 
                 <p><strong>Autor:</strong> {{ $libro->autor }}</p>
 
-                <p>
-                    <strong>Categoría:</strong> 
-                    {{ $libro->categoria->nombre ?? 'Sin categoría' }}
-                </p>
+                <p><strong>Categoría:</strong> {{ $libro->categoria->nombre_categoria ?? 'Sin categoría' }}</p>
+
 
                 <p><strong>Peso del archivo:</strong> {{ $libro->peso_archivo }} MB</p>
                 <p><strong>Palabras clave:</strong> {{ $libro->palabras_clave }}</p>
