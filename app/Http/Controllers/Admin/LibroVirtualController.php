@@ -103,6 +103,8 @@ class LibroVirtualController extends Controller
             'url_archivo' => 'required|url', 
             'imagen_portada' => 'nullable|image|max:2048',
             'palabras_clave' => 'nullable|string',
+            'peso_archivo' => 'nullable|numeric|min:1',
+            
         ]);
 
         $data = $request->all();
@@ -116,7 +118,13 @@ class LibroVirtualController extends Controller
                 ->store('libros_virtuales', 'public');
         }
 
-        $data['peso_archivo'] = null;
+                // Guardar el peso del archivo ingresado manualmente
+        if ($request->filled('peso_archivo')) {
+            $data['peso_archivo'] = $request->peso_archivo;
+        } else {
+            // Mantiene el peso ya existente si no se modifica
+            $data['peso_archivo'] = $libro->peso_archivo;
+        }
 
         // Convertir cualquier URL de Google Drive a preview
         $data['url_archivo'] = $this->convertirDrivePreview($data['url_archivo']);
